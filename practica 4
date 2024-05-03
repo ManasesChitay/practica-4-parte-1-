@@ -1,0 +1,28 @@
+void setup(){
+ 
+  Serial.begin(9600);
+  
+ 
+  pinMode(DIP_SWITCH_PIN1, INPUT_PULLUP);
+  pinMode(DIP_SWITCH_PIN2, INPUT_PULLUP);
+  pinMode(DIP_SWITCH_PIN3, INPUT_PULLUP);
+}
+
+void loop() {
+  bool dip_switch1 = digitalRead(DIP_SWITCH_PIN1);
+  bool dip_switch2 = digitalRead(DIP_SWITCH_PIN2);
+  bool dip_switch3 = digitalRead(DIP_SWITCH_PIN3);
+  
+  if (dip_switch1 && !dip_switch2 && !dip_switch3) {
+    velociad = VELOCIDAD_1_SEGUNDOS; // 1000
+  }else if(!dip_switch1 && !dip_switch2 && !dip_switch3){
+    velociad = VELOCIDAD_2_SEGUNDOS; // 2000
+  }else if(!dip_switch1 && !dip_switch2 && !dip_switch3){
+    velociad = VELOCIDAD_3_SEGUNDOS; // 3000
+  }
+  
+  for(int i = 0; i < 10; i++) {
+    Serial.println(i);
+    delay(velociad);
+  }
+}
